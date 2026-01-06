@@ -500,11 +500,41 @@ body {
   gap: 1rem;
 }
 
-.fullcare-visual {
-  border-radius: 18px;
-  overflow: hidden;
+.fullcare-carousel {
+  position: relative;
+  border-radius: 22px;
   background: #ffffff;
-  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.15);
+}
+
+.fullcare-carousel img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.6rem;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.carousel-dot.is-active {
+  background: var(--accent);
 }
 
 .mobile-preview {

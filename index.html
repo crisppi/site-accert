@@ -175,14 +175,18 @@
             Acessar FullCare
           </a>
         </div>
-        <div class="fullcare-panel">
-          <div class="fullcare-visual">
-            <img
-              src="images/fullcare-dashboard.webp"
-              alt="Dashboard do sistema FullCare com gráficos, listas de auditoria e alertas de sinistros."
-              loading="lazy"
-            />
-          </div>
+          <div class="fullcare-panel">
+            <div class="fullcare-carousel" data-images='["img/dash1.png","img/dash2.png"]'>
+              <img
+                src="img/dash1.png"
+                alt="Dashboard FullCare com indicadores financeiros e alertas."
+                loading="lazy"
+              />
+              <div class="carousel-indicators">
+                <button type="button" class="carousel-dot is-active" data-index="0" aria-label="Dashboard 1"></button>
+                <button type="button" class="carousel-dot" data-index="1" aria-label="Dashboard 2"></button>
+              </div>
+            </div>
           <div class="mobile-preview">
             <p class="mobile-label">FullCare Mobile</p>
             <img
@@ -213,36 +217,37 @@
         </div>
       </section>
 
-      <section class="contact" id="contato">
-        <div class="section-heading">
-          <p class="eyebrow">Contato</p>
-          <h2>Vamos conversar sobre o próximo ciclo de auditoria?</h2>
-          <p>
-            Fale conosco para entender como a Accert Consult e o FullCare podem evoluir a segurança financeira
-            e clínica do seu negócio.
-          </p>
-        </div>
-        <div class="contact-grid">
-          <div>
-            <h3>Fale com o time</h3>
-            <p><strong>Telefone:</strong> (11) 2359-4499</p>
-            <p><strong>Email:</strong> <a href="mailto:faleconosco@accertconsult.com.br">faleconosco@accertconsult.com.br</a></p>
-          </div>
-          <div>
-            <h3>Escritório</h3>
-            <p>Alameda Santos, 1165 - 1º andar - Sala 10</p>
-            <p>Jardim Paulista, São Paulo - SP</p>
-          </div>
-          <div>
-            <h3>Siga nossas atualizações</h3>
-            <p><a href="https://www.instagram.com/accert_consult/" target="_blank" rel="noreferrer">Instagram</a></p>
-            <p><a href="https://www.linkedin.com/company/102564637/" target="_blank" rel="noreferrer">LinkedIn</a></p>
-          </div>
-        </div>
-      </section>
     </main>
 
-    <footer class="site-footer">
+      <script>
+        (function () {
+          const carousel = document.querySelector(".fullcare-carousel");
+          if (!carousel) return;
+          const img = carousel.querySelector("img");
+          const dots = carousel.querySelectorAll(".carousel-dot");
+          const images = JSON.parse(carousel.dataset.images || "[]");
+          let current = 0;
+
+          const show = (index) => {
+            current = index;
+            img.src = images[index];
+            img.alt = index === 0
+              ? "Dashboard FullCare com indicadores financeiros e alertas."
+              : "Painel do FullCare mostrando fluxos e métricas de sinistros.";
+            dots.forEach((dot) => dot.classList.toggle("is-active", Number(dot.dataset.index) === index));
+          };
+
+          dots.forEach((dot) => {
+            dot.addEventListener("click", () => {
+              show(Number(dot.dataset.index));
+            });
+          });
+
+          setInterval(() => show((current + 1) % images.length), 5200);
+        })();
+      </script>
+
+      <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-column">
           <p class="footer-title">Accert Consult</p>
